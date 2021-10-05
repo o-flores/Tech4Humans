@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import { FaSearch } from 'react-icons/fa';
+import Switch from '@mui/material/Switch';
 import api from '../../services/api';
 import WeatherCard from '../WeatherCard';
 
@@ -14,8 +15,12 @@ function WeatherSearch() {
     e.preventDefault();
     const city = await api.searchCityByName(query, unit);
     setWeatherInfo(city);
-    setUnit('');
   }
+
+  const handleChange = (event) => {
+    if (event.target.checked) setUnit('metric');
+    else setUnit('imperial');
+  };
   return (
     <div>
       <FaSearch onClick={() => setIsInputActive(!isInputActive)} />
@@ -34,6 +39,12 @@ function WeatherSearch() {
           </button>
         </form>
       )}
+      <Switch
+        onChange={handleChange}
+        defaultChecked
+        color="default"
+      />
+      { unit === 'imperial' ? 'ºF' : 'ºC' }
       {
         weatherInfo && <WeatherCard cityInfo={weatherInfo} />
       }
