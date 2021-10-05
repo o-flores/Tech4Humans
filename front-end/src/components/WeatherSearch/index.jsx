@@ -33,7 +33,7 @@ function WeatherSearch() {
         </form>
       )}
       {
-        weatherInfo && <WeatherCard />
+        weatherInfo && <WeatherCard cityInfo={weatherInfo} />
       }
     </div>
   );
