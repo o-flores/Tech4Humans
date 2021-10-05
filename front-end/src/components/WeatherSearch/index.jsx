@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import './style.css';
 import { FaSearch } from 'react-icons/fa';
 import api from '../../services/api';
+import WeatherCard from '../WeatherCard';
 
 function WeatherSearch() {
   const [isInputActive, setIsInputActive] = useState(false);
   const [query, setQuery] = useState('');
+  const [weatherInfo, setWeatherInfo] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const city = await api.searchCityByName(query);
-    console.log(city);
+    setWeatherInfo(city);
   }
   return (
     <div>
@@ -30,6 +32,9 @@ function WeatherSearch() {
           </button>
         </form>
       )}
+      {
+        weatherInfo && <WeatherCard />
+      }
     </div>
   );
 }
