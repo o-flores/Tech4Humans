@@ -5,8 +5,8 @@ const config = {
   method: 'get',
 };
 
-const searchCityByName = async (name) => {
-  config.url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${APIKEY}`;
+const searchCityByName = async (name, units) => {
+  config.url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${APIKEY}&lang=pt_br&units=${units}`;
   try {
     const { data } = await axios(config);
     return data;
