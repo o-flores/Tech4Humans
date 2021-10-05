@@ -8,11 +8,13 @@ function WeatherSearch() {
   const [isInputActive, setIsInputActive] = useState(false);
   const [query, setQuery] = useState('');
   const [weatherInfo, setWeatherInfo] = useState(false);
+  const [unit, setUnit] = useState('metric');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const city = await api.searchCityByName(query);
+    const city = await api.searchCityByName(query, unit);
     setWeatherInfo(city);
+    setUnit('');
   }
   return (
     <div>
