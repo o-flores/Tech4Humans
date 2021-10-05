@@ -12,7 +12,8 @@ function WeatherCard({ cityInfo }) {
       <p>{id}</p>
       <p>{sys.country}</p>
       <p>{main.temp}</p>
-      <p>{weather.icon}</p>
+      <p>{weather[0].icon}</p>
+      <p>{main.humidity}</p>
     </div>
   );
 }
