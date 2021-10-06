@@ -1,19 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { BsCloudDrizzle, BsWind } from 'react-icons/bs';
+import './style.css';
 
-function WeatherCard({ cityInfo }) {
-  console.log(cityInfo);
+function WeatherCard({ cityInfo, unit }) {
+  const [tempSymbol, setTempSymbol] = useState('ºC');
+  const [windSymbol, setWindSymbol] = useState('meter/sec');
   const {
-    id, name, sys, main, weather,
+    name, sys, main, weather, wind,
   } = cityInfo;
+  console.log(cityInfo);
+
+  useEffect(() => {
+    if (unit === 'imperial') {
+      setTempSymbol('ºF');
+      setWindSymbol('miles/hour');
+    } else {
+      setTempSymbol('ºC');
+      setWindSymbol('meter/sec');
+    }
+  }, [cityInfo]);
+
   return (
-    <div>
-      <p>{name}</p>
-      <p>{id}</p>
-      <p>{sys.country}</p>
-      <p>{main.temp}</p>
-      <p>{weather[0].icon}</p>
-      <p>{main.humidity}</p>
+    <div id="weather-container">
+      <p id="weather-temp">{`${main.temp}${tempSymbol}`}</p>
+      <p id="weather-city">{`${name} - ${sys.country}`}</p>
+      <div id="weather-description-container">
+        <img
+          src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+          alt="weather icon"
+        />
+        <span>{`${weather[0].description}`}</span>
+      </div>
+      <div className="weather-condition-container">
+        <BsCloudDrizzle color="#48355B" fontSize="25px" />
+        <span>{`${main.humidity}%`}</span>
+      </div>
+      <div className="weather-condition-container">
+        <BsWind color="#48355B" fontSize="25px" />
+        <span>{`${wind.speed} ${windSymbol}`}</span>
+      </div>
     </div>
   );
 }
@@ -45,5 +71,10 @@ WeatherCard.propTypes = {
       id: PropTypes.number,
       main: PropTypes.string,
     }),
+    wind: PropTypes.shape({
+      speed: PropTypes.number,
+      deg: PropTypes.number,
+    }),
   }),
+  unit: PropTypes.string,
 }.isrequired;
