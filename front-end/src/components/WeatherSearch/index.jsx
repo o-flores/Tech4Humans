@@ -30,14 +30,14 @@ function WeatherSearch() {
             onChange={({ target }) => setQuery(target.value)}
             value={query}
           />
-          <FaSearch onClick={(e) => handleSubmit(e)} />
+          <FaSearch color="white" onClick={(e) => handleSubmit(e)} />
         </form>
         <Switch
           onChange={handleChange}
           defaultChecked
           color="default"
         />
-        {unit === 'imperial' ? 'ºF' : 'ºC'}
+        {unit === 'imperial' ? <span>ºF</span> : <span>ºC</span>}
       </div>
       <div>
         {
