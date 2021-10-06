@@ -6,7 +6,6 @@ import api from '../../services/api';
 import WeatherCard from '../WeatherCard';
 
 function WeatherSearch() {
-  const [isInputActive, setIsInputActive] = useState(false);
   const [query, setQuery] = useState('');
   const [weatherInfo, setWeatherInfo] = useState(false);
   const [unit, setUnit] = useState('metric');
@@ -22,9 +21,8 @@ function WeatherSearch() {
     else setUnit('imperial');
   };
   return (
-    <div>
-      <FaSearch onClick={() => setIsInputActive(!isInputActive)} />
-      {isInputActive && (
+    <div id="left-container">
+      <div id="form-container">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -32,22 +30,20 @@ function WeatherSearch() {
             onChange={({ target }) => setQuery(target.value)}
             value={query}
           />
-          <button
-            type="submit"
-          >
-            Procurar
-          </button>
+          <FaSearch onClick={(e) => handleSubmit(e)} />
         </form>
-      )}
-      <Switch
-        onChange={handleChange}
-        defaultChecked
-        color="default"
-      />
-      { unit === 'imperial' ? 'ºF' : 'ºC' }
-      {
-        weatherInfo && <WeatherCard cityInfo={weatherInfo} />
-      }
+        <Switch
+          onChange={handleChange}
+          defaultChecked
+          color="default"
+        />
+        {unit === 'imperial' ? 'ºF' : 'ºC'}
+      </div>
+      <div>
+        {
+          weatherInfo && <WeatherCard cityInfo={weatherInfo} />
+        }
+      </div>
     </div>
   );
 }
