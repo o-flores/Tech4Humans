@@ -8,13 +8,11 @@
 }
 
 #weather-temp {
-  color: white;
   font-size: 40px;
   align-self: flex-start;
 }
 
 #weather-city {
-  color: white;
   font-size: 25px;
   align-self: flex-start;
   margin-top: 10px;
@@ -28,7 +26,6 @@
 }
 
 #weather-description-container span {
-  color: white;
   font-weight: 300;
   font-size: 15px;
 }
@@ -46,4 +43,5 @@
   font-weight: 300;
   margin-left: 10px;
   font-size: 15px;
+  font-weight: 500;
 }
