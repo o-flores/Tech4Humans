@@ -41,7 +41,7 @@ function WeatherSearch() {
       </div>
       <div>
         {
-          weatherInfo && <WeatherCard cityInfo={weatherInfo} />
+          weatherInfo && <WeatherCard cityInfo={weatherInfo} unit={unit} />
         }
       </div>
     </div>
