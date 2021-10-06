@@ -1,0 +1,49 @@
+#weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+#weather-temp {
+  color: white;
+  font-size: 40px;
+  align-self: flex-start;
+}
+
+#weather-city {
+  color: white;
+  font-size: 25px;
+  align-self: flex-start;
+  margin-top: 10px;
+  font-weight: 300;
+}
+
+#weather-description-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#weather-description-container span {
+  color: white;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.weather-condition-container {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.weather-condition-container span {
+  color: #48355B;
+  font-weight: 300;
+  margin-left: 10px;
+  font-size: 15px;
+}
