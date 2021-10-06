@@ -5,7 +5,7 @@ import './style.css';
 
 function WeatherCard({ cityInfo, unit }) {
   const [tempSymbol, setTempSymbol] = useState('ºC');
-  const [windSymbol, setWindSymbol] = useState('meter/sec');
+  const [windSymbol, setWindSymbol] = useState('m/s');
   const {
     name, sys, main, weather, wind,
   } = cityInfo;
@@ -14,16 +14,16 @@ function WeatherCard({ cityInfo, unit }) {
   useEffect(() => {
     if (unit === 'imperial') {
       setTempSymbol('ºF');
-      setWindSymbol('miles/hour');
+      setWindSymbol('milhas/h');
     } else {
       setTempSymbol('ºC');
-      setWindSymbol('meter/sec');
+      setWindSymbol('m/s');
     }
   }, [cityInfo]);
 
   return (
     <div id="weather-container">
-      <p id="weather-temp">{`${main.temp}${tempSymbol}`}</p>
+      <p id="weather-temp">{`${main.temp} ${tempSymbol}`}</p>
       <p id="weather-city">{`${name} - ${sys.country}`}</p>
       <div id="weather-description-container">
         <img
