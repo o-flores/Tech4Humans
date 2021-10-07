@@ -1,8 +1,26 @@
+const axios = require('axios');
 const model = require('../models');
 
-const postWeather = async ({ city }) => {
-  const response = await model.postCity({ city });
-  return response;
+const APIKEY = '734666bbe244aa6889b49b8a4e3030a2';
+
+const config = {
+  method: 'get',
+};
+
+const searchCityByName = async (name, unit) => {
+  config.url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${APIKEY}&lang=pt_br&units=${unit}`;
+  try {
+    const { data } = await axios(config);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const postWeather = async ({ city, unit }) => {
+  const data = await searchCityByName(city, unit);
+  await model.postCity({ city });
+  return data;
 };
 
 module.exports = {
