@@ -1,8 +1,8 @@
 const service = require('../services');
 
-const postWeather = async (req, res, next) => {
+const postCity = async (req, res, next) => {
   const { unit, city } = req.body;
-  const response = await service.postWeather({ city, unit });
+  const response = await service.postCity({ city, unit });
 
   if (response.error) return next(response);
 
@@ -10,5 +10,5 @@ const postWeather = async (req, res, next) => {
 };
 
 module.exports = {
-  postWeather,
+  postCity,
 };
