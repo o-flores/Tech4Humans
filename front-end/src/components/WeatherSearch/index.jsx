@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './style.css';
 import { FaSearch } from 'react-icons/fa';
 import Switch from '@mui/material/Switch';
-import api from '../../services/api';
 import WeatherCard from '../WeatherCard';
+
+const axios = require('axios');
 
 function WeatherSearch() {
   const [query, setQuery] = useState('');
@@ -12,8 +13,15 @@ function WeatherSearch() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const city = await api.searchCityByName(query, unit);
-    setWeatherInfo(city);
+    try {
+      const { data } = await axios.post('http://localhost:3001/weather', {
+        city: query,
+        unit,
+      });
+      setWeatherInfo(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleChange = (event) => {
