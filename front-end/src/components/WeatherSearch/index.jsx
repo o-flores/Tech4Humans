@@ -10,6 +10,7 @@ function WeatherSearch() {
   const [query, setQuery] = useState('');
   const [weatherInfo, setWeatherInfo] = useState(false);
   const [unit, setUnit] = useState('metric');
+  const [cityError, setCityError] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -18,7 +19,8 @@ function WeatherSearch() {
         city: query,
         unit,
       });
-      setWeatherInfo(data);
+      if (data.code) setCityError(true);
+      else setWeatherInfo(data);
     } catch (error) {
       console.log(error);
     }
@@ -48,8 +50,11 @@ function WeatherSearch() {
         {unit === 'imperial' ? <span>ºF</span> : <span>ºC</span>}
       </div>
       <div>
+        { cityError && 'por favor digite uma cidade existente'}
+      </div>
+      <div>
         {
-          weatherInfo && <WeatherCard cityInfo={weatherInfo} unit={unit} />
+          weatherInfo && !cityError && <WeatherCard cityInfo={weatherInfo} unit={unit} />
         }
       </div>
     </div>
