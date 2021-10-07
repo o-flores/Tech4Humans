@@ -3,26 +3,25 @@ const model = require('../models');
 
 const APIKEY = '734666bbe244aa6889b49b8a4e3030a2';
 
-const config = {
-  method: 'get',
-};
-
 const searchCityByName = async (name, unit) => {
-  config.url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${APIKEY}&lang=pt_br&units=${unit}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${APIKEY}&lang=pt_br&units=${unit}`;
   try {
-    const { data } = await axios(config);
+    const { data } = await axios.get(url);
     return data;
   } catch (error) {
-    return error;
+    return { code: error.response.data.cod, message: error.response.data.message };
   }
 };
 
-const postWeather = async ({ city, unit }) => {
+const postCity = async ({ city, unit }) => {
   const data = await searchCityByName(city, unit);
-  await model.postCity({ city });
+
+  if (!data.error) {
+    await model.postCity({ city });
+  }
   return data;
 };
 
 module.exports = {
-  postWeather,
+  postCity,
 };
