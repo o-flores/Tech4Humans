@@ -16,7 +16,7 @@ const searchCityByName = async (name, unit) => {
 const postCity = async ({ city, unit }) => {
   const data = await searchCityByName(city, unit);
 
-  if (!data.error) {
+  if (!data.code) {
     await model.postCity({ city });
   }
   return data;
