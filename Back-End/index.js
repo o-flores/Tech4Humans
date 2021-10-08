@@ -15,6 +15,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 app.post('/weather', controller.postCity);
+app.get('/weather/history', controller.getLastSearchs);
 
 app.use(error);
 
