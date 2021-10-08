@@ -28,17 +28,22 @@ const postCity = async ({ city, unit }) => {
 
   const { id, name: cityName } = cityInfo;
   const time = getFullDate();
-  const [result] = await model.updateCity({ id, time });
 
-  if (result.changedRows === 0) {
-    await model.postCity({ id, cityName });
+  try {
+    const [result] = await model.updateCity({ id, time });
+
+    if (result.changedRows === 0) {
+      await model.postCity({ id, cityName });
+      return {
+        id, city, created: true, cityInfo,
+      };
+    }
     return {
-      id, city, created: true, cityInfo,
+      id, city, created: false, cityInfo,
     };
+  } catch (error) {
+    return { code: error.code, message: error.message };
   }
-  return {
-    id, city, created: false, cityInfo,
-  };
 };
 
 module.exports = {
