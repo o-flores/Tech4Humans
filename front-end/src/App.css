@@ -13,3 +13,9 @@ body {
   overflow: hidden;
   color: white;
 }
+
+.App {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
