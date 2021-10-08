@@ -12,9 +12,15 @@ const postCity = async (req, res, next) => {
 };
 
 const getLastSearchs = async (req, res, next) => {
-  const { limit } = req.query;
+  const response = await service.getLastSearchs();
 
-  const response = await service.getLastSearchs(limit);
+  if (response.error) return next(response);
+
+  return res.status(200).json(response);
+};
+
+const getTop5Cities = async (req, res, next) => {
+  const response = await service.getTop5Cities();
 
   if (response.error) return next(response);
 
@@ -24,4 +30,5 @@ const getLastSearchs = async (req, res, next) => {
 module.exports = {
   postCity,
   getLastSearchs,
+  getTop5Cities,
 };
