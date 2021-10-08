@@ -35,11 +35,11 @@ const postCity = async ({ city, unit }) => {
     if (result.changedRows === 0) {
       await model.postCity({ id, cityName });
       return {
-        id, city, created: true, cityInfo,
+        created: true, cityInfo,
       };
     }
     return {
-      id, city, created: false, cityInfo,
+      created: false, cityInfo,
     };
   } catch (error) {
     return { code: error.code, message: error.message };
