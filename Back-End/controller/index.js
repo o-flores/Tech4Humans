@@ -6,7 +6,9 @@ const postCity = async (req, res, next) => {
 
   if (response.error) return next(response);
 
-  return res.status(201).json(response);
+  if (response.created) return res.status(201).json(response);
+
+  return res.status(200).json(response);
 };
 
 module.exports = {
