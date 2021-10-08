@@ -16,10 +16,16 @@ const postCity = async ({ id, cityName }) => {
   return data;
 };
 
-const getLastSearchs = async (limit) => {
+const getLastSearchs = async () => {
   const [data] = await connection.execute(
-    'SELECT city FROM Tech4Humans.weather ORDER BY updated_at DESC LIMIT 0,?',
-    [limit],
+    'SELECT city FROM Tech4Humans.weather ORDER BY updated_at DESC LIMIT 0,3',
+  );
+  return data;
+};
+
+const getTop5Cities = async () => {
+  const [data] = await connection.execute(
+    'SELECT city FROM Tech4Humans.weather ORDER BY count DESC, city  LIMIT 0,5',
   );
   return data;
 };
@@ -28,4 +34,5 @@ module.exports = {
   postCity,
   updateCity,
   getLastSearchs,
+  getTop5Cities,
 };
