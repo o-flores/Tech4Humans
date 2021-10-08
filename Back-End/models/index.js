@@ -1,9 +1,9 @@
 const connection = require('./connection');
 
-const updateCity = async ({ id }) => {
+const updateCity = async ({ id, time }) => {
   const data = await connection.execute(
-    'UPDATE Tech4Humans.weather SET COUNT = COUNT + 1 WHERE id = ?',
-    [id],
+    'UPDATE Tech4Humans.weather SET COUNT = COUNT + 1, updated_at = ? WHERE id = ?',
+    [time, id],
   );
   return data;
 };

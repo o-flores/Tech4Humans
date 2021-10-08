@@ -3,6 +3,14 @@ const model = require('../models');
 
 const APIKEY = '734666bbe244aa6889b49b8a4e3030a2';
 
+const getFullDate = () => {
+  const today = new Date();
+  const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+  const dateTime = `${date} ${time}`;
+  return dateTime;
+};
+
 const searchCityByName = async (name, unit) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${APIKEY}&lang=pt_br&units=${unit}`;
   try {
@@ -19,7 +27,8 @@ const postCity = async ({ city, unit }) => {
   if (cityInfo.code) return cityInfo;
 
   const { id, name: cityName } = cityInfo;
-  const [result] = await model.updateCity({ id });
+  const time = getFullDate();
+  const [result] = await model.updateCity({ id, time });
 
   if (result.changedRows === 0) {
     await model.postCity({ id, cityName });
