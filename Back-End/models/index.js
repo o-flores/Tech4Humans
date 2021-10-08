@@ -1,14 +1,22 @@
 const connection = require('./connection');
 
-const postCity = async ({ city }) => {
-  await connection.execute(
-    'INSERT INTO Tech4Humans.weather (city) VALUES (?)',
-    [city],
+const updateCity = async ({ id }) => {
+  const data = await connection.execute(
+    'UPDATE Tech4Humans.weather SET COUNT = COUNT + 1 WHERE id = ?',
+    [id],
   );
+  return data;
+};
 
-  return { city };
+const postCity = async ({ id, city }) => {
+  const data = await connection.execute(
+    'INSERT INTO Tech4Humans.weather (id, city, count) VALUES (?, ?, 1)',
+    [id, city],
+  );
+  return data;
 };
 
 module.exports = {
   postCity,
+  updateCity,
 };
