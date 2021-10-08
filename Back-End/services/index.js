@@ -46,6 +46,17 @@ const postCity = async ({ city, unit }) => {
   }
 };
 
+const getLastSearchs = async (limit) => {
+  try {
+    const data = await model.getLastSearchs(limit);
+    const cities = await data.map(({ city }) => city);
+    return cities;
+  } catch (error) {
+    return { code: error.code, message: error.message };
+  }
+};
+
 module.exports = {
   postCity,
+  getLastSearchs,
 };
