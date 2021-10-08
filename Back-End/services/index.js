@@ -14,12 +14,22 @@ const searchCityByName = async (name, unit) => {
 };
 
 const postCity = async ({ city, unit }) => {
-  const data = await searchCityByName(city, unit);
+  const cityInfo = await searchCityByName(city, unit);
 
-  if (!data.code) {
-    await model.postCity({ city });
+  if (cityInfo.code) return cityInfo;
+
+  const { id } = cityInfo;
+  const [result] = await model.updateCity({ id });
+
+  if (result.changedRows === 0) {
+    await model.postCity({ id, city });
+    return {
+      id, city, created: true, cityInfo,
+    };
   }
-  return data;
+  return {
+    id, city, created: false, cityInfo,
+  };
 };
 
 module.exports = {
