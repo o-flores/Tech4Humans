@@ -18,11 +18,11 @@ const postCity = async ({ city, unit }) => {
 
   if (cityInfo.code) return cityInfo;
 
-  const { id } = cityInfo;
+  const { id, name: cityName } = cityInfo;
   const [result] = await model.updateCity({ id });
 
   if (result.changedRows === 0) {
-    await model.postCity({ id, city });
+    await model.postCity({ id, cityName });
     return {
       id, city, created: true, cityInfo,
     };

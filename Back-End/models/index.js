@@ -8,10 +8,10 @@ const updateCity = async ({ id }) => {
   return data;
 };
 
-const postCity = async ({ id, city }) => {
+const postCity = async ({ id, cityName }) => {
   const data = await connection.execute(
     'INSERT INTO Tech4Humans.weather (id, city, count) VALUES (?, ?, 1)',
-    [id, city],
+    [id, cityName],
   );
   return data;
 };
