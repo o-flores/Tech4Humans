@@ -9,10 +9,13 @@ const axios = require('axios');
 function WeatherSearch() {
   const [query, setQuery] = useState('');
   const [weatherInfo, setWeatherInfo] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [unit, setUnit] = useState('metric');
   const [cityError, setCityError] = useState(false);
 
   async function handleSubmit(e) {
+    setCityError(false);
+    setLoading(true);
     e.preventDefault();
     try {
       const { data } = await axios.post('http://localhost:3001/weather', {
@@ -20,10 +23,11 @@ function WeatherSearch() {
         unit,
       });
       if (data.code) setCityError(true);
-      else setWeatherInfo(data);
+      else setWeatherInfo(data.cityInfo);
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   }
 
   const handleChange = (event) => {
@@ -50,11 +54,16 @@ function WeatherSearch() {
         {unit === 'imperial' ? <span>ºF</span> : <span>ºC</span>}
       </div>
       <div>
+        { loading && '...loading' }
+      </div>
+      <div>
         { cityError && 'por favor digite uma cidade existente'}
       </div>
       <div>
         {
-          weatherInfo && !cityError && <WeatherCard cityInfo={weatherInfo} unit={unit} />
+          weatherInfo
+          && !cityError
+          && <WeatherCard cityInfo={weatherInfo} unit={unit} />
         }
       </div>
     </div>
