@@ -1,0 +1,11 @@
+#tables-container {
+  width: 30vw;
+  height: 25vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+table tr {
+  text-align: center;
+}
