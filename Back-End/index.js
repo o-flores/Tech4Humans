@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 app.post('/weather', controller.postCity);
 app.get('/weather/history', controller.getLastSearchs);
+app.get('/weather/top5', controller.getTop5Cities);
 
 app.use(error);
 
