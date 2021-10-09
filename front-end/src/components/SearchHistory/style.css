@@ -6,6 +6,20 @@
   justify-content: space-around;
 }
 
+table {
+  border-collapse: separate; 
+  border-spacing: 0 10px;
+}
+
+table thead tr {
+  font-size: 18px;
+}
+
 table tr {
   text-align: center;
+}
+
+table tbody tr {
+  font-weight: 300;
+  font-size: 15px;
 }
