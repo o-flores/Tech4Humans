@@ -9,7 +9,6 @@ function WeatherCard({ cityInfo, unit }) {
   const {
     name, sys, main, weather, wind,
   } = cityInfo;
-  console.log(cityInfo);
 
   useEffect(() => {
     if (unit === 'imperial') {
