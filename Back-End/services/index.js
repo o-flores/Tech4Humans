@@ -26,14 +26,14 @@ const postCity = async ({ city, unit }) => {
 
   if (cityInfo.code) return cityInfo;
 
-  const { id, name: cityName } = cityInfo;
+  const { id, name: cityName, sys: { country } } = cityInfo;
   const time = getFullDate();
 
   try {
     const [result] = await model.updateCity({ id, time });
 
     if (result.changedRows === 0) {
-      await model.postCity({ id, cityName });
+      await model.postCity({ id, cityName, country });
       return {
         created: true, cityInfo,
       };
@@ -49,7 +49,7 @@ const postCity = async ({ city, unit }) => {
 const getLastSearchs = async () => {
   try {
     const data = await model.getLastSearchs();
-    const cities = await data.map(({ city }) => city);
+    const cities = await data.map(({ city, country }) => ({ city, country }));
     return cities;
   } catch (error) {
     return { code: error.code, message: error.message };
@@ -59,7 +59,7 @@ const getLastSearchs = async () => {
 const getTop5Cities = async () => {
   try {
     const data = await model.getTop5Cities();
-    const cities = await data.map(({ city }) => city);
+    const cities = await data.map(({ city, country }) => ({ city, country }));
     return cities;
   } catch (error) {
     return { code: error.code, message: error.message };
