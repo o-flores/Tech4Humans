@@ -8,24 +8,24 @@ const updateCity = async ({ id, time }) => {
   return data;
 };
 
-const postCity = async ({ id, cityName }) => {
+const postCity = async ({ id, cityName, country }) => {
   const data = await connection.execute(
-    'INSERT INTO Tech4Humans.weather (id, city, count) VALUES (?, ?, 1)',
-    [id, cityName],
+    'INSERT INTO Tech4Humans.weather (id, city, country, count) VALUES (?, ?, ?, 1)',
+    [id, cityName, country],
   );
   return data;
 };
 
 const getLastSearchs = async () => {
   const [data] = await connection.execute(
-    'SELECT city FROM Tech4Humans.weather ORDER BY updated_at DESC LIMIT 0,3',
+    'SELECT city, country FROM Tech4Humans.weather ORDER BY updated_at DESC LIMIT 0,3',
   );
   return data;
 };
 
 const getTop5Cities = async () => {
   const [data] = await connection.execute(
-    'SELECT city FROM Tech4Humans.weather ORDER BY count DESC, city  LIMIT 0,5',
+    'SELECT city, country FROM Tech4Humans.weather ORDER BY count DESC, city  LIMIT 0,5',
   );
   return data;
 };
