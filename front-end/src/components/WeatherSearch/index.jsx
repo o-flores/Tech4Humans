@@ -3,6 +3,7 @@ import './style.css';
 import { FaSearch } from 'react-icons/fa';
 import Switch from '@mui/material/Switch';
 import WeatherCard from '../WeatherCard';
+import Loading from '../Loading';
 
 const axios = require('axios');
 
@@ -12,20 +13,22 @@ function WeatherSearch() {
   const [loading, setLoading] = useState(false);
   const [unit, setUnit] = useState('metric');
   const [cityError, setCityError] = useState(false);
+  const [error, setError] = useState(false);
 
   async function handleSubmit(e) {
     setCityError(false);
     setLoading(true);
+    setError(false);
     e.preventDefault();
     try {
       const { data } = await axios.post('http://localhost:3001/weather', {
         city: query,
         unit,
       });
-      if (data.code) setCityError(true);
-      else setWeatherInfo(data.cityInfo);
-    } catch (error) {
-      console.log(error);
+      setWeatherInfo(data.cityInfo);
+    } catch (err) {
+      if (err.response.data.message === 'city not found') setCityError(true);
+      else setCityError(true);
     }
     setLoading(false);
   }
@@ -54,10 +57,13 @@ function WeatherSearch() {
         {unit === 'imperial' ? <span>ºF</span> : <span>ºC</span>}
       </div>
       <div>
-        { loading && '...loading' }
+        { error && <p className="error-message">Por favor tente novamente mais tarde</p> }
       </div>
       <div>
-        { cityError && 'por favor digite uma cidade existente'}
+        {loading && <Loading />}
+      </div>
+      <div>
+        {cityError && <p className="error-message">por favor digite uma cidade existente</p>}
       </div>
       <div>
         {
