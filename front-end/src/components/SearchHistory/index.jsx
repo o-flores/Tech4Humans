@@ -31,24 +31,34 @@ function SearchHistory() {
     <div id="tables-container">
       <table>
         <thead>
-          <tr>Top 5 cidades mais procuradas</tr>
+          <tr>
+            <th>Top 5 cidades mais procuradas</th>
+          </tr>
         </thead>
         <tbody>
-          {mostSearched.length === 0 && ' '}
-          {mostSearched.length > 0 && mostSearched.map(({ city, country }) => (
-            <tr key={city}>{`${city} - ${country}`}</tr>
-          ))}
+          <tr>
+            {mostSearched.length === 0 ? <td /> : null}
+            {mostSearched.length > 0 && mostSearched.map(({ city, country }) => (
+              <td key={city}>{`${city} - ${country}`}</td>
+            ))}
+
+          </tr>
         </tbody>
       </table>
       <table>
         <thead>
-          <tr>Histório de busca</tr>
+          <tr>
+            <th>Histórico de busca</th>
+          </tr>
         </thead>
         <tbody>
-          {citiesHistory.length === 0 && ' '}
-          {citiesHistory.length > 0 && citiesHistory.map(({ city, country }) => (
-            <tr key={city}>{`${city} - ${country}`}</tr>
-          ))}
+          <tr>
+            {citiesHistory.length === 0 ? <td /> : null}
+            {citiesHistory.length > 0 && citiesHistory.map(({ city, country }) => (
+              <td key={city}>{`${city} - ${country}`}</td>
+            ))}
+
+          </tr>
         </tbody>
       </table>
 
