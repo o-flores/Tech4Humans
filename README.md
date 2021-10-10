@@ -41,13 +41,14 @@ Para rodar este projeto localmente, é necessário que seja instalado o MySql Se
 
 Para criar a tabela utilizada no projeto utilize o arquivo seed.sql localizado em Back-End/seed.sql.
 Para a criação podemos tanto utilizar a interface MySql WorkBench ou pelo terminal.
-Pelo terminal acesse o mysql utilizando o comando:
+
+1.Pelo terminal acesse o mysql utilizando o comando:
 
 ```javascript
   sudo mysql -u [nome_do_usuario] -p
 ```
 
-Após acessar a instância do mysql, copie e cole o contéudo do seed.sql para a criação da tabela.
+2. Após acessar a instância do mysql, copie e cole o contéudo do seed.sql para a criação da tabela.
 
 ### Clonando o projeto:
 
