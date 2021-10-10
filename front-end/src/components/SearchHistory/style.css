@@ -30,3 +30,12 @@ table tbody td {
   font-size: 15px;
   margin-top: 8px;
 }
+
+@media screen and (max-width: 800px)  {
+  #tables-container {
+    display: flex;
+    width: 90vw;
+    margin: auto;
+    justify-content: space-around;
+  }
+}
