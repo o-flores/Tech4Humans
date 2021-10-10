@@ -19,3 +19,10 @@ body {
   flex-direction: row;
   align-items: center;
 }
+
+@media screen and (max-width: 500px)  {
+  .App {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
