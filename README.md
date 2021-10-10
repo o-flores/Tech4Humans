@@ -83,5 +83,5 @@ DB_PASS=[senha_do_usuario]
   cd cd front-end
   npm start
 ```
-6. Dessa forma, o projeto está pronto para ser rodado localmente
+7. Dessa forma, o projeto está pronto para ser rodado localmente
 ---
