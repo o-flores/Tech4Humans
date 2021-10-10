@@ -1,6 +1,6 @@
 #left-container {
   width: 50vw;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,4 +33,16 @@ input::placeholder {
   margin-top: 20px;
   font-size: 15px;
   font-weight: 300;
+}
+
+@media screen and (max-width: 800px)  {
+  #left-container {
+    width: 90vw;
+    height: 40vh;
+    margin: 0 auto 40px;
+  }
+  input {
+    width: 200px;
+    font-size: 12px;
+  }
 }
