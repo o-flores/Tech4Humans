@@ -20,7 +20,7 @@ body {
   align-items: center;
 }
 
-@media screen and (max-width: 500px)  {
+@media screen and (max-width: 800px)  {
   .App {
     flex-direction: column;
     flex-wrap: wrap;
