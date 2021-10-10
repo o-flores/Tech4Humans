@@ -15,8 +15,10 @@ Abaixo uma imagem do resultado final, qualquer dúvida é só entrar em contato 
 Para rodar este projeto localmente, é necessário que seja instalado o MySql Server, criar um usuário e uma senha (caso já tenha o MySql Server instalado pule para a etapa "Criando a tabela")
 
 ### Instalando o MySql Server: 
-#### Linux
+
 1. Abra o terminal e rode os seguintes comandos:
+
+#### Linux
 ```javascript
   sudo apt update
   sudo apt install mysql-server
@@ -64,7 +66,7 @@ Após acessar a instância do mysql, copie e cole o contéudo do seed.sql para a
   npm i
 ```
 
-4. Crie o arquivo .env na raiz do diretório Back-End/ e crie as variáveis de ambiente para a conexão com o banco. Utilize a usuário e a senha criadas anteriormente:
+4. Crie o arquivo .env na raiz do diretório Back-End/ e crie as variáveis de ambiente para a conexão com o banco. Utilize o usuário e a senha criadas anteriormente:
 ```javascript
 DB_USER=[nome_do_usuario]
 DB_PASS=[senha_do_usuario]
