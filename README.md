@@ -80,7 +80,7 @@ DB_PASS=[senha_do_usuario]
 ```
 6. Para abrir a aplicação no seu browser rode os seguintes comandos:
 ```javascript
-  cd cd front-end
+  cd front-end
   npm start
 ```
 7. Dessa forma, o projeto está pronto para ser rodado localmente
